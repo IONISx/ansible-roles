@@ -1,0 +1,4 @@
+- name: restart sinopia
+  service: >
+    name=sinopia
+    state=restarted

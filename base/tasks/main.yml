@@ -1,0 +1,25 @@
+- name: update apt configuration
+  template: >-
+    src=sources.list
+    dest=/etc/apt/sources.list
+
+- name: set apt proxy
+  template: >-
+    src=99proxy
+    dest=/etc/apt/apt.conf.d/99proxy
+  when: mirror_apt_url is defined
+
+- name: update apt cache
+  apt: >-
+    update_cache=yes
+
+- name: add apt extra repositories
+  apt_repository: >-
+    repo={{ item }}
+  with_items: base_apt_extra_repositories
+
+- name: install apt packages
+  apt: >-
+    pkg={{ item }}
+    state=present
+  with_items: base_apt_pkgs

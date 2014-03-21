@@ -1,0 +1,13 @@
+sinopia_host: localhost
+sinopia_port: 4873
+
+sinopia_user: sinopia
+sinopia_home: '/srv/sinopia'
+
+sinopia_npm_registry: 'https://registry.npmjs.org/'
+sinopia_log_file: '/var/log/sinopia.log'
+
+# Defaults to 'sinopiapassword'
+# Generate a new password hash using
+#   crypto.createHash('sha1').update(pass).digest('hex')
+sinopia_admin_password_hash: '3fa52c2817d16b8ddf6a1549dced8c20ddb01e19'

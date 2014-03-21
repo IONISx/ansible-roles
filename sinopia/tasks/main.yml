@@ -1,0 +1,29 @@
+- name: install sinopia
+  npm: >-
+    name=sinopia
+    global=yes
+    state=present
+
+- name: add sinopia user
+  user: >-
+    name={{ sinopia_user }}
+    home={{ sinopia_home }}
+
+- name: add sinopia configuration
+  template: >-
+    src=config.yaml
+    dest={{ sinopia_home }}/config.yaml
+    owner={{ sinopia_user }}
+    group={{ sinopia_user }}
+  notify: restart sinopia
+
+- name: create upstart script for sinopia
+  template: >-
+    src=upstart.conf
+    dest=/etc/init/sinopia.conf
+  notify: restart sinopia
+
+- name: ensure sinopia service has started
+  service: >-
+    name=sinopia
+    state=started

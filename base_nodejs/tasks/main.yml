@@ -1,0 +1,19 @@
+- name: add nodejs ppa
+  apt_repository: >-
+     repo={{ base_nodejs_ppa }}
+
+- name: install apt packages
+  apt: >-
+    package={{ item }}
+    state=present
+  with_items: base_nodejs_apt_pkgs
+
+- name: install nodejs
+  apt: >-
+    package=nodejs
+    state=present
+
+- name: set npm registry
+  shell:
+    npm config --global set registry "{{ mirror_npm_url }}"
+  when: mirror_npm_url is defined

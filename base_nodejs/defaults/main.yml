@@ -1,0 +1,6 @@
+base_nodejs_ppa: 'ppa:chris-lea/node.js'
+
+base_nodejs_apt_pkgs:
+  - git
+  - make
+  - g++
