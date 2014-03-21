@@ -1,0 +1,7 @@
+apt_cacher_ng_host: localhost
+apt_cacher_ng_port: 9999
+
+apt_cacher_ng_user: apt-cacher-ng
+
+apt_cacher_ng_cache_path: '/var/cache/apt-cacher-ng'
+apt_cacher_ng_log_path: '/var/log/apt-cacher-ng'

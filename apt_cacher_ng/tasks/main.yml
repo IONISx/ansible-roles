@@ -1,0 +1,17 @@
+- name: install apt-cacher-ng
+  apt: >-
+    pkg=apt-cacher-ng
+    state=present
+
+- name: add apt-cacher-ng configuration
+  template: >-
+    src=acng.conf
+    dest=/etc/apt-cacher-ng/acng.conf
+    owner={{ apt_cacher_ng_user }}
+    group={{ apt_cacher_ng_user }}
+  notify: restart apt-cacher-ng
+
+- name: ensure apt-cacher-ng has started
+  service: >-
+    name=apt-cacher-ng
+    state=started
