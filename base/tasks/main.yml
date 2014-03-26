@@ -7,6 +7,7 @@
   template: >-
     src=99proxy
     dest=/etc/apt/apt.conf.d/99proxy
+    mode=0644
   when: mirror_apt_url is defined
 
 - name: update apt cache
