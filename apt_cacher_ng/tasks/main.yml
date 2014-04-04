@@ -1,7 +1,6 @@
 - name: install apt-cacher-ng
   apt: >-
     pkg=apt-cacher-ng
-    state=present
 
 - name: add apt-cacher-ng configuration
   template: >-

@@ -4,14 +4,12 @@
 
 - name: install apt packages
   apt: >-
-    package={{ item }}
-    state=present
+    pkg={{ item }}
   with_items: base_nodejs_apt_pkgs
 
 - name: install nodejs
   apt: >-
-    package=nodejs
-    state=present
+    pkg=nodejs
 
 - name: set npm registry
   shell:

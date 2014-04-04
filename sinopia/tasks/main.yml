@@ -2,7 +2,6 @@
   npm: >-
     name=sinopia
     global=yes
-    state=present
 
 - name: add sinopia user
   user: >-
