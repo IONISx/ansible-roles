@@ -1,0 +1,2 @@
+[global]
+index-url = {{ mirror_pypi_url }}

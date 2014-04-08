@@ -1,0 +1,19 @@
+- name: install devpi
+  pip: >-
+    name=devpi-server
+
+- name: add devpi user
+  user: >-
+    name={{ devpi_user }}
+    home={{ devpi_home }}
+
+- name: create upstart script for devpi
+  template: >-
+    src=upstart.conf
+    dest=/etc/init/devpi.conf
+  notify: restart devpi
+
+- name: ensure devpi service has started
+  service: >-
+    name=devpi
+    state=started

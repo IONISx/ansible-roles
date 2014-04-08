@@ -1,0 +1,4 @@
+- name: restart devpi
+  service: >
+    name=devpi
+    state=restarted

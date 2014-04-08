@@ -1,0 +1,7 @@
+devpi_host: localhost
+devpi_port: 3141
+
+devpi_user: devpi
+devpi_home: '/srv/devpi'
+
+devpi_log_file: '/var/log/devpi.log'

@@ -1,0 +1,24 @@
+- name: install apt packages
+  apt: >-
+    pkg={{ item }}
+  with_items: base_python2_apt_pkgs
+
+- name: configure easy_install
+  template: >-
+    src=pydistutils.cfg
+    dest=/root/.pydistutils.cfg
+    mode=0644
+  when: mirror_pypi_url is defined
+
+- name: create pip directory
+  template: >-
+    path=/root/.pip
+    mode=0755
+  when: mirror_pypi_url is defined
+
+- name: configure pip
+  template: >-
+    src=pip.conf
+    dest=/root/.pip/pip.conf
+    mode=0644
+  when: mirror_pypi_url is defined
