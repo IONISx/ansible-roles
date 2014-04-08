@@ -33,7 +33,7 @@ Unattended-Upgrade::Package-Blacklist {
 // have a working mail setup on your system. A package that provides
 // 'mailx' must be installed.
 {% if base_admin_email is defined %}
-//Unattended-Upgrade::Mail "{{ base_admin_email }}";
+Unattended-Upgrade::Mail "{{ base_admin_email }}";
 {% endif %}
 
 // Set this value to "true" to get emails only on errors. Default
