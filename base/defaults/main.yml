@@ -7,5 +7,6 @@ base_apt_extra_repositories:
   - 'ppa:git-core/ppa'
 
 base_apt_pkgs:
+  - unattended-upgrades
   - ntp
   - git

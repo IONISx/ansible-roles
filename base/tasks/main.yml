@@ -28,3 +28,15 @@
   apt: >-
     pkg={{ item }}
   with_items: base_apt_pkgs
+
+- name: configure unattended-upgrades
+  template: >-
+    src=50unattended-upgrades
+    dest=/etc/apt/apt.conf.d/50unattended-upgrades
+    mode=0644
+
+- name: setup periodic apt upgrades
+  template: >-
+    src=10periodic
+    dest=/etc/apt/apt.conf.d/10periodic
+    mode=0644
