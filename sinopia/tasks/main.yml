@@ -1,7 +1,9 @@
 - name: install sinopia
   npm: >-
     name=sinopia
+    version={{ sinopia_version }}
     global=yes
+  notify: restart sinopia
 
 - name: add sinopia user
   user: >-

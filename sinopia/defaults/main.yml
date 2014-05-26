@@ -1,6 +1,8 @@
 sinopia_host: localhost
 sinopia_port: 4873
 
+sinopia_version: 0.8.1
+
 sinopia_user: sinopia
 sinopia_home: '/srv/sinopia'
 
