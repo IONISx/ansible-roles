@@ -1,6 +1,7 @@
 - name: install devpi
   pip: >-
     name=devpi-server
+    version={{ devpi_version }}
 
 - name: add devpi user
   user: >-
