@@ -1,0 +1,24 @@
+- name: install required apt packages
+  apt: >-
+    name={{ item }}
+  with_items: phantomjs_apt_packages
+
+- name: get phantomjs facts
+  action: phantomjs_facts
+
+- name: download phantomjs
+  get_url: >-
+    url="{{ phantomjs_url }}"
+    dest=/tmp/phantomjs.tar.bz2
+    force=true
+  when: "not phantomjs.installed or phantomjs.version != '{{ phantomjs_version }}'"
+
+- name: extract phantomjs
+  shell: "cd /tmp && tar xvjf /tmp/phantomjs.tar.bz2 -C /usr/local/bin/ --overwrite --wildcards '**/bin/phantomjs' --strip-components=2"
+  when: "not phantomjs.installed or phantomjs.version != '{{ phantomjs_version }}'"
+
+- name: fix phantomjs permissions
+  file: >-
+    path=/usr/local/bin/phantomjs
+    state=file
+    mode=0755

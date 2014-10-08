@@ -61,6 +61,14 @@ Installs sinopia.
 
 Installs devpi.
 
+### `phantomjs`
+
+*Dependencies*: `base`
+
+Installs phantomjs.  
+Specify version using `phantomjs_version`.  
+Based on https://github.com/nicolai86/ansible-phantomjs.
+
 
 ## License
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)

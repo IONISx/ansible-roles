@@ -1,0 +1,7 @@
+phantomjs_apt_packages:
+  - libfreetype6
+  - libfreetype6-dev
+  - libfontconfig1
+
+phantomjs_version: '1.9.7'
+phantomjs_url: 'https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-{{ phantomjs_version }}-linux-x86_64.tar.bz2'
