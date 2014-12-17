@@ -10,6 +10,7 @@
   get_url: >-
     url="{{ phantomjs_url }}"
     dest=/tmp/phantomjs.tar.bz2
+    validate_certs=no
     force=true
   when: "not phantomjs.installed or phantomjs.version != '{{ phantomjs_version }}'"
 
