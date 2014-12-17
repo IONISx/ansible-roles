@@ -1,7 +1,7 @@
 devpi_host: localhost
 devpi_port: 3141
 
-devpi_version: 2.0.4
+devpi_version: 2.1.2
 
 devpi_user: devpi
 devpi_home: '/srv/devpi'
