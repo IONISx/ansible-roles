@@ -1,3 +1,5 @@
+base_locale: 'en_US.UTF-8'
+
 base_apt_repository: 'http://archive.ubuntu.com/ubuntu/'
 
 base_apt_pre_pkgs:
