@@ -2,6 +2,7 @@
   pip: >-
     name=devpi-server
     version={{ devpi_version }}
+  notify: restart devpi
 
 - name: add devpi user
   user: >-
