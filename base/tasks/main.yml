@@ -1,12 +1,8 @@
-# Uncomment when ansible >= 1.6
-#- name: generate locale
-#  locale_gen: >-
-#    name={{ base_locale }}
-#    state=present
-#  ignore_errors: true
-
-- name: update default locale
-  command: update-locale LC_ALL="{{ base_locale }}" LANG="{{ base_locale }}"
+- name: generate locale
+  locale_gen: >-
+    name={{ base_locale }}
+    state=present
+  ignore_errors: true
 
 - name: update apt configuration
   template: >-
