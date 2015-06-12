@@ -1,5 +1,6 @@
-base_python2_apt_pkgs:
+base_python2_apt_packages:
   - python2.7
   - python2.7-dev
-  - python-pip
-  - python-virtualenv
+
+base_python2_packages:
+  - virtualenv

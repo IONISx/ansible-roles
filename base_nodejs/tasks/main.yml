@@ -14,4 +14,9 @@
 - name: set npm registry
   shell:
     npm config --global set registry "{{ mirror_npm_url }}"
-  when: mirror_npm_url is defined
+  when: mirror_npm_url is defined and mirror_npm_url
+
+- name: unset npm registry
+  shell:
+    npm config --global delete registry
+  when: mirror_npm_url is not defined or not mirror_npm_url

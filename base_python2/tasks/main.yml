@@ -1,25 +1,48 @@
 - name: install apt packages
   apt: >-
     pkg={{ item }}
-  with_items: base_python2_apt_pkgs
+  with_items: base_python2_apt_packages
+
+- name: install pip
+  easy_install: >-
+    name=pip
+# Add after ansible 2.0
+#    state=latest
+
+- name: install python packages
+  pip: >-
+    name={{ item }}
+  with_items: base_python2_packages
 
 - name: configure easy_install
   template: >-
     src=pydistutils.cfg
     dest=/root/.pydistutils.cfg
     mode=0644
-  when: mirror_pypi_url is defined
+  when: mirror_pypi_url is defined and mirror_pypi_url
+
+- name: remove easy_install configuration
+  file: >-
+    path=/root/.pydistutils.cfg
+    state=absent
+  when: mirror_pypi_url is not defined or not mirror_pypi_url
 
 - name: create pip directory
   file: >-
     path=/root/.pip
     state=directory
     mode=0755
-  when: mirror_pypi_url is defined
+  when: mirror_pypi_url is defined and mirror_pypi_url
 
 - name: configure pip
   template: >-
     src=pip.conf
     dest=/root/.pip/pip.conf
     mode=0644
-  when: mirror_pypi_url is defined
+  when: mirror_pypi_url is defined and mirror_pypi_url
+
+- name: remove pip configuration
+  file: >-
+    path=/root/.pip/pip.conf
+    state=absent
+  when: mirror_pypi_url is not defined or not mirror_pypi_url
