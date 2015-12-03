@@ -1,1 +1,5 @@
 Acquire::http::Proxy "{{ mirror_apt_url }}";
+
+# Do not use the proxy for db.nodesource.com
+# as it uses HTTPS
+Acquire::http::Proxy { deb.nodesource.com DIRECT; };
