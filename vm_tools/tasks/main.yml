@@ -1,0 +1,6 @@
+- name: install apt packages
+  apt: >-
+    pkg={{ item }}
+  with_items: vm_tools_apt_pkgs
+  tags:
+    - vm_tools

@@ -1,0 +1,2 @@
+vm_tools_apt_pkgs:
+  - open-vm-tools
