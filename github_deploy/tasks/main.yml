@@ -1,0 +1,22 @@
+- name: create github deployment
+  uri:
+    url: https://api.github.com/repos/{{ github_deploy_user }}/{{ github_deploy_repo }}/deployments
+    method: POST
+    body: "{{ github_deploy_body | to_json }}"
+    body_format: json
+    status_code: 201
+    return_content: 'yes'
+    HEADER_Authorization: 'Bearer {{ github_deploy_token }}'
+    HEADER_Content-Type: 'application/json'
+  register: github_deployment
+  tags:
+    - deploy
+    - github
+
+- name: notify github deployment validation
+  command: /bin/true
+  notify:
+    - validate github deployment
+  tags:
+    - deploy
+    - github

@@ -1,0 +1,13 @@
+- name: validate github deployment
+  uri: >
+    url='{{ github_deployment.json.url }}/statuses'
+    method=POST
+    body='{{ github_deploy_success_body | to_json }}'
+    body_format=json
+    status_code=201
+    return_content='yes'
+    HEADER_Authorization='Bearer {{ github_deploy_token }}'
+    HEADER_Content-Type='application/json'
+  tags:
+    - deploy
+    - github
