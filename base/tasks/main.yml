@@ -1,3 +1,16 @@
+- name: Set timezone variables
+  copy: >
+    content='{{ base_timezone }}\n'
+    dest=/etc/timezone
+    owner=root
+    group=root
+    mode=0644
+    backup=yes
+  notify:
+    - update timezone
+  tags:
+    - timezone
+
 - name: generate locale
   locale_gen: >-
     name={{ base_locale }}
