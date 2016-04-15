@@ -9,12 +9,14 @@
     HEADER_Authorization: 'Bearer {{ github_deploy_token }}'
     HEADER_Content-Type: 'application/json'
   register: github_deployment
+  run_once: true
   tags:
     - deploy
     - github
 
 - name: notify github deployment validation
   command: /bin/true
+  run_once: true
   notify:
     - validate github deployment
   tags:
