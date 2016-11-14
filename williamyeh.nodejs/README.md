@@ -2,16 +2,16 @@
 williamyeh.nodejs for Ansible Galaxy
 ============
 
-[![Circle CI](https://circleci.com/gh/William-Yeh/ansible-nodejs.svg?style=shield)](https://circleci.com/gh/William-Yeh/ansible-nodejs)
+[![Build Status](https://travis-ci.org/William-Yeh/ansible-nodejs.svg?branch=master)](https://travis-ci.org/William-Yeh/ansible-nodejs) [![Circle CI](https://circleci.com/gh/William-Yeh/ansible-nodejs.svg?style=shield)](https://circleci.com/gh/William-Yeh/ansible-nodejs)
 
 
 ## Summary
 
-Role name in Ansible Galaxy: **[williamyeh.nodejs](https://galaxy.ansible.com/list#/roles/3669)**
+Role name in Ansible Galaxy: **[williamyeh.nodejs](https://galaxy.ansible.com/williamyeh/nodejs/)**
 
 This Ansible role has the following features for [Node.js](http://nodejs.org/):
 
- - Install specific version of Node.js (including [io.js](https://iojs.org/)).
+ - Install specific version of Node.js ([io.js](https://iojs.org/) is only supported under Debian/Ubuntu).
 
 
 
@@ -29,21 +29,24 @@ None.
 Pick one version to install:
 
 ```yaml
-# Node.js version; e.g., "4.0", "0.12", "0.12.7"
+# Node.js version; e.g., "5", "4.0", "0.12", "0.12.7"
+# Both numeric and string forms are ok.
 nodejs_version
 
 
 # io.js version; e.g., "3.3"
+# NOTE: only available under Debian/Ubuntu.
 iojs_version
 ```
 
-If neither `nodejs_version` nor `iojs_version` is defined, `nodejs_version` is defined automatically by `tasks/set-role-variables.yml` as:
+If neither `nodejs_version` nor `iojs_version` is defined, `nodejs_version` is defined automatically by `tasks/set-role-variables.yml` according to `defaults/main.yml` settings:
 
   - `nodejs_default_in_apt` for Debian/Ubuntu.
   - `nodejs_default_in_yum` for CentOS.
 
 
-User-configurable defaults:
+
+Other user-configurable defaults:
 
 ```yaml
 # install tools for compiling native addons from npm?
@@ -70,7 +73,7 @@ Simple example:
 # file: simple-playbook.yml
 
 - hosts: all
-  sudo: True
+  become: True
 
   roles:
     - williamyeh.nodejs
@@ -92,7 +95,10 @@ Licensed under the MIT License. See the [LICENSE file](LICENSE) for details.
 
 ## History
 
-- 1.0 : From now on, the role installs Node.js from [NodeSource](https://github.com/nodesource/distributions) binary distributions.
+
+- 1.0 : Use Ansible 2.0 syntax; support up to Node.js 5.x.
+
+- Initial commit (2015-05-08): From now on, the role installs Node.js from [NodeSource](https://github.com/nodesource/distributions) binary distributions.
 
 
 

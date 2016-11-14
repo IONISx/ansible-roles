@@ -1,3 +1,13 @@
+- name: add apt extra repositories
+  apt_repository: >-
+    repo={{ item }}
+  with_items: '{{ base_nodejs_apt_extra_repositories }}'
+
+- name: install apt packages
+  apt: >-
+    pkg={{ item }}
+  with_items: '{{ base_nodejs_apt_pkgs }}'
+
 - name: set npm registry
   shell:
     npm config --global set registry "{{ mirror_npm_url }}"
@@ -7,3 +17,11 @@
   shell:
     npm config --global delete registry
   when: mirror_npm_url is not defined or not mirror_npm_url
+
+- name: install global npm dependencies
+  npm: >-
+    name={{ item.name }}
+    version={{ item.version | default('latest') }}
+    global=yes
+  register: gnpminstall
+  with_items: '{{ base_nodejs_npm_pkgs }}'

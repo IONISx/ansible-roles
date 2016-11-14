@@ -1,6 +1,21 @@
-nodejs_version: 0.12
+nodejs_version: 6
+
+base_nodejs_apt_extra_repositories:
+  - 'ppa:ubuntu-toolchain-r/test'
 
 base_nodejs_apt_pkgs:
   - git
   - make
-  - g++
+  - gcc-5
+  - g++-5
+
+base_nodejs_npm_pkgs:
+  - name: npm
+    version: 3
+  - name: bower
+    version: 1
+  - name: gulp-cli
+    version: 1
+  - name: pm2
+    version: 2
+  - name: yarn
