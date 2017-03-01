@@ -12,7 +12,7 @@ base_apt_pre_pkgs:
 
 base_apt_extra_repositories:
   - 'ppa:git-core/ppa'
-  - 'ppa:fkrull/deadsnakes-python2.7'
+  #- 'ppa:fkrull/deadsnakes-python2.7'
 
 base_apt_pkgs:
   - python2.7

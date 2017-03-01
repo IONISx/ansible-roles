@@ -1,2 +1,4 @@
-- name: update timezone
-  command: dpkg-reconfigure --frontend noninteractive tzdata
+- name: revert ssh_auth_sock permissions
+  command: >-
+    chmod -R 0700 {{ ansible_env.SSH_AUTH_SOCK | dirname }}
+  ignore_errors: true

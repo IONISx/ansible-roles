@@ -8,16 +8,6 @@
     pkg={{ item }}
   with_items: '{{ base_nodejs_apt_pkgs }}'
 
-- name: set npm registry
-  shell:
-    npm config --global set registry "{{ mirror_npm_url }}"
-  when: mirror_npm_url is defined and mirror_npm_url
-
-- name: unset npm registry
-  shell:
-    npm config --global delete registry
-  when: mirror_npm_url is not defined or not mirror_npm_url
-
 - name: install global npm dependencies
   npm: >-
     name={{ item.name }}
@@ -25,3 +15,5 @@
     global=yes
   register: gnpminstall
   with_items: '{{ base_nodejs_npm_pkgs }}'
+  tags:
+    - deploy

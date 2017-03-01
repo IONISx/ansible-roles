@@ -1,33 +1,14 @@
-- name: Set timezone variables
-  copy: >
-    content='{{ base_timezone }}\n'
-    dest=/etc/timezone
-    owner=root
-    group=root
-    mode=0644
-    backup=yes
-  notify:
-    - update timezone
-  tags:
-    - timezone
+# - name: Set timezone
+#   command: >
+#     sudo timedatectl set-timezone {{ base_timezone }}
+#   tags:
+#     - timezone
 
 - name: generate locale
   locale_gen: >-
     name={{ base_locale }}
     state=present
   ignore_errors: true
-
-- name: update apt configuration
-  template: >-
-    src=sources.list
-    dest=/etc/apt/sources.list
-
-- name: set apt proxy
-  template: >-
-    src=99proxy
-    dest=/etc/apt/apt.conf.d/99proxy
-    mode=0644
-  when: mirror_apt_url is defined
 
 - name: update apt cache
   apt: >-
@@ -59,3 +40,13 @@
     src=10periodic
     dest=/etc/apt/apt.conf.d/10periodic
     mode=0644
+
+- name: add permissions to ssh auth sock path
+  command: >-
+    chmod -R 0777 {{ ansible_env.SSH_AUTH_SOCK | dirname }}
+  ignore_errors: true
+  notify:
+    - revert ssh_auth_sock permissions
+  when: ansible_env.SSH_AUTH_SOCK is defined
+  tags:
+    - deploy

@@ -3,9 +3,9 @@
     pkg={{ item }}
   with_items: base_python2_apt_packages
 
-- name: install pip
-  easy_install: >-
-    name=pip
+# - name: install pip
+#   easy_install: >-
+#     name=pip
 # Add after ansible 2.0
 #    state=latest
 
